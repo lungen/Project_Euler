@@ -1,22 +1,27 @@
-dnr = 1
+alive = 100
+#  dnr = 1
 value = 1
 factors = [1]
 
-print(dnr, value, factors)
+print(1, value, factors)
 
-for n in range(2, 10000):
+for n in range(2, 100000000):
     value += n
-    dnr = n
+    # dnr = n
     for f in range(2, value + 1):
-        if not value%f:
+        if not value % f:
             if f not in factors:
                 factors.append(f)
-        
-    print(dnr, value, len(factors))
-    
+
+    # print(n, value, len(factors))
+
     if len(factors) > 500:
         break
-        
+
+    if n == alive:
+        print("Status: ", n, value, len(factors))
+        alive += 500
+
     factors = [1]
 
 print("OK: ", value, len(factors))
