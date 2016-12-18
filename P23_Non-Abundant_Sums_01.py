@@ -61,14 +61,13 @@ def check_int(data):
     ck_suma = 0
     for i in range(1, limit + 1):
         for idx, element in enumerate(data):
-            if not i % element:
-                # print("Teilbar: ", i, element)
-                break
-            else:
-                # print("Nicht Teilbar: ", i)
-                if i not in inters:
-                    inters.append(i)
-                    ck_suma += i
+            if i not in data:
+                if not i % element:  # Teilbar
+                    break
+                else:  # nicht teilbar
+                    if i not in inters:
+                        inters.append(i)
+                        ck_suma += i
     # print(inters)
     print("SUMA: ", ck_suma)
 
