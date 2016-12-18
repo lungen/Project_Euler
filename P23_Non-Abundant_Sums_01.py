@@ -20,3 +20,60 @@ is less than this limit.
 Find the sum of all the positive integers which cannot be written as the sum
 of two abundant numbers.
 """
+
+
+def save_it(data):
+
+    with open("P23_Abdunant_Numbers_2.txt", "w") as f:
+        f.write('\n'.join(str(line) for line in data))
+    print("DATA SAVED")
+
+
+def make_abd_nr(n=50):
+
+    abd_nrs = []
+
+    for i in range(n + 1):
+        abd_div = []
+        suma = 0
+        for j in range(1, n):
+            if j >= i:
+                break
+            if not i % j:
+                abd_div.append(j)
+                suma += j
+                if suma > i:
+                    abd_nrs.append(i)
+                    # abd_nrs.append((i, suma))
+                    # print(" - BINGO - ", i, suma)
+                    break
+                # print(i, j, abd_div, suma)
+
+    # print(abd_nrs)
+    # save_it(abd_nrs)
+    print("ABDN-Numbers made and saved!: ", len(abd_nrs))
+    return abd_nrs
+
+
+def check_int(data):
+
+    inters = []
+    ck_suma = 0
+    for i in range(1, limit + 1):
+        for idx, element in enumerate(data):
+            if not i % element:
+                # print("Teilbar: ", i, element)
+                break
+            else:
+                # print("Nicht Teilbar: ", i)
+                if i not in inters:
+                    inters.append(i)
+                    ck_suma += i
+    # print(inters)
+    print("SUMA: ", ck_suma)
+
+# big_nr = 28123
+limit = 500
+abd_numbers = make_abd_nr(limit)
+# print(abd_numbers)
+check_int(abd_numbers)
