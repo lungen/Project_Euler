@@ -22,9 +22,9 @@ of two abundant numbers.
 """
 
 
-def save_it(data):
+def save_it(data, file_name):
 
-    with open("P23_Abdunant_Numbers_2.txt", "w") as f:
+    with open(file_name, "w") as f:
         f.write('\n'.join(str(line) for line in data))
     print("DATA SAVED")
 
@@ -50,7 +50,7 @@ def make_abd_nr(n=50):
                 # print(i, j, abd_div, suma)
 
     # print(abd_nrs)
-    # save_it(abd_nrs)
+    save_it(abd_nrs, "P23_Abdunant_Numbers_3.txt")
     print("ABDN-Numbers made and saved!: ", len(abd_nrs))
     return abd_nrs
 
@@ -69,6 +69,7 @@ def check_int(data):
                         inters.append(i)
                         ck_suma += i
     # print(inters)
+    save_it(inters, "P23_Abdunant_Numbers__not_divides.txt")
     print("SUMA: ", ck_suma)
 
 # big_nr = 28123
