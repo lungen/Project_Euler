@@ -113,15 +113,17 @@ def rolling(abundant_numbers):
 def make_sum(data):
 
     suma = []
-    for idx, element in enumerate(data):
-        for ndx, value in enumerate(data):
+    for idx, element in enumerate(data[:10]):
+        for ndx, value in enumerate(data[:10]):
             res = element + value
+            print(element, value)
+            if res > 28123:
+                break
             if res not in suma:
                 suma.append(res)
 
     print(len(suma))
     save_it(suma, "P23_Sum_of_Abundant_Numbers.txt")
-
 
 # big_nr = 28123
 limit = 28123
