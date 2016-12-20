@@ -113,10 +113,9 @@ def rolling(abundant_numbers):
 def make_sum(data):
 
     suma = []
-    for idx, element in enumerate(data[:10]):
-        for ndx, value in enumerate(data[:10]):
+    for idx, element in enumerate(data):
+        for ndx, value in enumerate(data):
             res = element + value
-            print(element, value)
             if res > 28123:
                 break
             if res not in suma:
