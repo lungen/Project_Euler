@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+"""
+http://mathforum.org/library/drmath/view/54367.html
 
+"""
 
 def make_divi(n):
 
