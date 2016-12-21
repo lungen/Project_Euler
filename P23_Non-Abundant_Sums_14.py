@@ -61,7 +61,7 @@ def make_sum_of(data):
     # make sum of positive integers which cannot be written as the sum
     # of two abundant numbers.
 
-    nat_data = [int(i) for i in range(1, limit)]
+    nat_data = [int(i) for i in range(1, limit + 1)]
     set_nat_data = set(nat_data)
     set_data = set(data)
     rest_data = set_nat_data - set_data
