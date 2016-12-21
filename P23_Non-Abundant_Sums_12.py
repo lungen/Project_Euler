@@ -22,14 +22,21 @@ of two abundant numbers.
 """
 
 
+import datetime
+
+
+def timeStamped(fname, fmt='{fname}_%Y-%m-%d-%H-%M-%S'):
+    return datetime.datetime.now().strftime(fmt).format(fname=fname)
+
+
 def save_it(data, file_name):
 
-    with open(file_name, "w") as f:
+    with open(timeStamped(file_name), "w") as f:
         f.write('\n'.join(str(line) for line in data))
     print("DATA SAVED")
 
 
-def make_abd_nr(n=50):
+def make_abd_nr(n=100):
 
     abd_nrs = []
 
@@ -50,9 +57,21 @@ def make_abd_nr(n=50):
                 # print(i, j, abd_div, suma)
 
     # print(abd_nrs)
-    save_it(abd_nrs, "P23_Abdunant_Numbers_3.txt")
+    # save_it(abd_nrs, "P23_Abdunant_Numbers_3.txt")
     print("ABDN-Numbers made and saved!: ", len(abd_nrs))
     return abd_nrs
+
+
+def load_it(file_name):
+
+    try:
+        with open(file_name, 'r') as f:
+            data = f.read()
+    except:
+        print("FAIL to READ DATA!")
+
+    data_list = [int(number) for number in data.split("\n")]
+    return(data_list)
 
 
 def check_int(data):
@@ -72,8 +91,37 @@ def check_int(data):
     save_it(inters, "P23_Abdunant_Numbers__not_divides.txt")
     print("SUMA: ", ck_suma)
 
+
+def rolling(abundant_numbers):
+
+    abnr = abundant_numbers
+
+    start = 1
+    suma = 0
+
+    for element in abnr[3:]:
+        for n in range(start, element):
+            print("Suma + n:", suma, n, " = ", (suma + n))
+            suma += n
+
+        start = element + 1
+
+    print(suma)
+    print("suma + 28123: ", suma + 28123)
+
+
+def make_sum(data):
+
+    suma = []
+    for idx, element in enumerate(data):
+        for ndx, value in enumerate(data):
+            res = element + value
+
+
 # big_nr = 28123
-limit = 500
-abd_numbers = make_abd_nr(limit)
-# print(abd_numbers)
-check_int(abd_numbers)
+limit = 28123
+# abd_numbers = make_abd_nr(limit)
+# check_int(abd_numbers)
+# rolling(abd_numbers)
+data = load_it('P23_Abdunant_Numbers.txt')
+make_sum(data)
