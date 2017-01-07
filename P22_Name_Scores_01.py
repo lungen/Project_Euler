@@ -9,7 +9,7 @@ def read_file():
 
 
 def abc_value(name):
-    
+
     suma = 0
     for idx, string in enumerate(name):
         if string != '"':
