@@ -1,0 +1,1 @@
+http://stackoverflow.com/questions/3675390/how-to-find-repeating-sequence-of-characters-in-a-given-array
