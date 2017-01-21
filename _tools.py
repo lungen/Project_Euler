@@ -1,15 +1,20 @@
 
 
 def save_it(data, file_name):
-            
+    """ save list: data, filename """
+
     def timeStamped(fname, fmt='{fname}_%Y-%m-%d-%H-%M-%S.txt'):
         import datetime
         return datetime.datetime.now().strftime(fmt).format(fname=fname)
 
-    with open(timeStamped(file_name), "w") as f:
-        f.write('\n'.join(str(line) for line in data))
+    try:
+        with open(timeStamped(file_name), "w") as f:
+            f.write('\n'.join(str(line) for line in data))
+        print("DATA SAVED")
 
-    print("DATA SAVED")
+    except:
+        print("FAIL TO SAVE DATA")
+
 
 
 def load_it(file_name):
