@@ -38,16 +38,20 @@ def find_cycles(n='abcdabcd', start=0):
 
     return p
 
+
 lista = []
-for i in range(47, 50):
+for i in range(47, 51):
     res = Decimal(1) / Decimal(i)
     print(i, res)
     re = find_cycles(res, 2)
     print(i, re)
-    if re:
+    if res:
         lista.append((i, re))
+        lista.append((i, res))
 
-#_tools.save_it(lista, 'p26-result-txt')
+
+_tools.remove_files('p26-erg')
+_tools.save_it(lista, 'p26-erg')
 
 
 

@@ -1,3 +1,16 @@
+def remove_files(file_names):
+    """ removes files  """
+
+    import os, glob
+
+    list_files= glob.glob(file_names + '*')
+
+    try:
+        for f in list_files:
+            os.remove(f)
+        print('FILES REMOVED')
+    except:
+        print('FAIL TO REMOVE FILES')
 
 
 def save_it(data, file_name):
@@ -10,11 +23,11 @@ def save_it(data, file_name):
     try:
         with open(timeStamped(file_name), "w") as f:
             f.write('\n'.join(str(line) for line in data))
+
         print("DATA SAVED")
 
     except:
         print("FAIL TO SAVE DATA")
-
 
 
 def load_it(file_name):
