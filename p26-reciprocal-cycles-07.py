@@ -10,6 +10,7 @@ FAIL
 (49, '020408163')
 (51, '019607843137254901960784313725490')
 """
+
 from decimal import *
 import _tools
 
@@ -42,12 +43,12 @@ def find_cycles(n='abcdabcd', start=0):
 def run_1():
         
     lista = []
-    for i in range(47, 51):
+    for i in range(1, 50):
         res = Decimal(1) / Decimal(i)
         print(i, res)
         re = find_cycles(res, 2)
         print(i, re)
-        if res:
+        if res and res is not 0:
             lista.append((i, re))
             lista.append((i, res))
 
@@ -59,7 +60,9 @@ def find_substring(substring, string):
     """ find substring in string """
 
     indices = []
-    index = -1
+    # where to start from
+    #index = -1
+    index = 0
 
     while True:
         # find next index of substring, by starting search from index + 1
@@ -70,4 +73,21 @@ def find_substring(substring, string):
     return indices
 
 
-print(find_substring('a', 'abcabcda'))
+def find_substring_build(substr='a', str='abcabca'):
+
+    indices = []
+    index = -1
+
+    while index < len(str) - 1:
+        index = index + 1
+        if str[index] == substr:
+            indices.append(index)
+
+    return indices
+
+
+
+
+#print(find_substring('a', 'abcabcda'))
+#run_1()
+print(find_substring_build())
