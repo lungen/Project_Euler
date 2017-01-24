@@ -39,19 +39,65 @@ def find_cycles(n='abcdabcd', start=0):
     return p
 
 
-lista = []
-for i in range(47, 51):
-    res = Decimal(1) / Decimal(i)
-    print(i, res)
-    re = find_cycles(res, 2)
-    print(i, re)
-    if res:
-        lista.append((i, re))
-        lista.append((i, res))
+def findstr_cycles(n='abcabc', start=0):
+    """ find pattern in string """
+
+    n = str(n[start:])
+    print(n)
+    print(n.find(n[0], 1))
+    print(n.index(n[0], 1))
 
 
-_tools.remove_files('p26-erg')
-_tools.save_it(lista, 'p26-erg')
+def find_sub_in_string(n='abcabcdefa'):
+    """ search for all substrings in string """
+
+    print("GO")
+    n = str(n)
+    print(n)
+    sub = n[0]
+    start = 0
+    print(n[0])
+    while True:
+        start = n.find(sub, start)
+        if start == -1:
+            return
+        yield start
+        #start += len(sub)
+        start += 1
+    print("no")
 
 
 
+def run_it_1():
+
+    lista = []
+    for i in range(47, 51):
+        res = Decimal(1) / Decimal(i)
+        print(i, res)
+        re = find_cycles(res, 2)
+        print(i, re)
+        if res:
+            lista.append((i, re))
+            lista.append((i, res))
+    #_tools.remove_files('p26-erg')
+    #_tools.save_it(lista, 'p26-erg')
+
+
+def run_it_2():
+
+    lista = []
+    for i in range(47, 48):
+        res = Decimal(1) / Decimal(i)
+        print(i, res)
+        rec = find_cycles(res, 2)
+        print(i, len(str(rec)), rec)
+
+    #_tools.remove_files('p26-erg')
+    #_tools.save_it(lista, 'p26-erg')
+
+
+#run_it_2()
+#findstr_cycles()
+print("aa")
+find_sub_in_string()
+print("dsf")
