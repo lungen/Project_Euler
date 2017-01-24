@@ -58,7 +58,11 @@ def find_cycles_2(n='abcdabcd', start=0):
                 break
 
         else:
-            ib += 1
+            if ib == len(n) - 1:
+                ia += 1
+                ib = ia + 1
+            else:
+                ib += 1
 
     if p:
         return p
@@ -146,4 +150,4 @@ def run_it():
 #print(find_substring_build('a', 'abcabcda'))
 #run_1()
 #run_it()
-print(find_cycles_2('abca', 0))
+print(find_cycles_2('zzzzqabcabq', 0))
