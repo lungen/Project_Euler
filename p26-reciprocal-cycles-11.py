@@ -1,15 +1,5 @@
 # -*- coding: utf-8 -*-
 
-"""
-FAIL
-
-(43, '02325581395348837209302325581')
-(46, '02173913043478260869565217391')
-(47, '0212')
-(48, '0')
-(49, '020408163')
-(51, '019607843137254901960784313725490')
-"""
 
 from decimal import *
 import _tools
@@ -150,4 +140,4 @@ def run_it():
 #print(find_substring_build('a', 'abcabcda'))
 #run_1()
 #run_it()
-print(find_cycles_2('zzzzqabcabq', 0))
+print(find_cycles_2('zqabcabq', 0))

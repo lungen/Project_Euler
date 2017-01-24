@@ -14,7 +14,7 @@ FAIL
 from decimal import *
 import _tools
 
-#getcontext().prec = 100
+getcontext().prec = 100
 
 
 def find_cycles(n='abcdabcd', start=0):
@@ -129,10 +129,20 @@ def find_pattern(strg='0.123123', start=2):
 
     return indices
 
+def calculate(alist):
+
+    try:
+        return alist[1] - alist[0]
+    except:
+        print("Calculate FAIL")
+        return 0
+
 
 def run_it():
 
-    for i in range(2, 31):
+    maxi = -1
+    maxi_l = -1
+    for i in range(2, 20):
 
         erg = str(Decimal(1)/Decimal(i))
 
@@ -140,7 +150,12 @@ def run_it():
             erg_B = find_cycles_2(erg, 2)
             if erg_B and erg_B !=0:
                 erg_A = find_pattern(erg_B, 0)
-                print("{0:>2} {1} {2}".format(i, erg_A, erg_B))
+                print(i, calculate(erg_A), erg_B)
+                #print("{0:>2} {1} {2}".format(i, erg_A, erg_B))
+                if calculate(erg_A) > maxi:
+                    maxi = i
+                    maxi_l = erg_B
+    print("\n", maxi, maxi_l)
 
 
 
