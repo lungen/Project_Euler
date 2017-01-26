@@ -1,1 +1,23 @@
+START HERE
+http://i.cs.hku.hk/~provinci/utilities.html
+https://www.topcoder.com/community/data-science/data-science-tutorials/
+http://algs4.cs.princeton.edu/home/    -ALGORITHMS
+
+
+WIKIBOOKS - ALGORITHM
+
+https://en.wikibooks.org/wiki/Category:Algorithm_Implementation
+
+
 http://heather.cs.ucdavis.edu/~matloff/pudb.html#quickpic
+
+
+LONGEST NON OVERLAPPING REPATED SUBSTRING (P26)
+https://www.google.at/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=longest+non+overlapping+repeated+substring
+http://www.geeksforgeeks.org/longest-repeating-and-non-overlapping-substring/
+http://articles.leetcode.com/longest-substring-without-repeating-characters/
+
+http://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+
+
+http://softwareengineering.stackexchange.com/questions/110804/why-are-zero-based-arrays-the-norm

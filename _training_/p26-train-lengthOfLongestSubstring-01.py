@@ -25,20 +25,22 @@ def lengthOfLongestSubstring(s='abcabcb'):
     maxLen = max(maxLen, n - i)
     return maxLen
 
-print(lengthOfLongestSubstring('abcabcjg'))
-
+#print(lengthOfLongestSubstring('abcabcjg'))
 
 
 def train_it(s='abcabcd'):
 
    n = len(s)
    i, j = 0, 0
+   pos = 0
    maxLen = 0
    exist = []
 
    while j < n:
        if s[j] in exist:
-           maxLen = max(maxLen, j - i)
+           pos = j - i
+           #maxLen = max(maxLen, j - i)
+           maxLen = max(maxLen, pos)
            while s[i] != s[j]:
                i += 1
            i += 1
@@ -46,6 +48,9 @@ def train_it(s='abcabcd'):
        else:
            exist.append(s[j])
            j += 1
+
+   maxLen = max(maxLen, n - i)
+
    return maxLen
 
-#print(train_it())
+print(train_it('abcdcedfgh'))
