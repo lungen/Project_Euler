@@ -135,9 +135,15 @@ def run_it():
                 print("{0:>2} {1} {2}".format(i, erg_A, erg_B))
 
 
+def makeCycles(start, stop):
+
+    for i in range(start, stop + 1):
+        erg = Decimal(1) / Decimal(i)
+        print(i, erg)
 
 #print(find_substring('a', 'abcabcda'))
 #print(find_substring_build('a', 'abcabcda'))
 #run_1()
 #run_it()
-print(find_cycles_2('zqabcabq', 0))
+#print(find_cycles_2('zqabcabq', 0))
+makeCycles(1, 111)
