@@ -1,10 +1,16 @@
-"""
-s = 'xxxabcabcabc'
-s = 'xabbbbbb'
-s = 'abacABACbacABAC'
-s = 'abbaABBAabbaABBA'
-s = 'abgikafgkad'
-"""
+import sys
+sys.setrecursionlimit(9000)
+
+
+def dividor(z, n, declist, loop=10):
+    if loop == 0:
+        return declist
+    else:
+        rest = (z % n) * 10
+        dec = z // n
+        declist += str(dec)
+
+        return dividor(rest, n, declist, loop - 1)
 
 
 def massband(s, dif=-1):
@@ -34,14 +40,12 @@ def massband(s, dif=-1):
             j = i + 1
 
 
-def loop():
-    from decimal import Decimal, getcontext
+def loopRec():
 
-    getcontext().prec = 1000
     maxi, maxlen = 0, 0
 
     for i in range(1, 1001):
-        res = Decimal(1) / Decimal(i)
+        res = dividor(1, i, declist='', loop=2000)
         res = str(res)
         n = massband(res[2:-2])
         if n:
@@ -52,4 +56,4 @@ def loop():
     print("i: {0}, len: {1} ".format(maxlen, maxi))
 
 
-loop()
+loopRec()

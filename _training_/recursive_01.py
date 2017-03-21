@@ -54,4 +54,4 @@ def fibo_recursive(n):
     else:
         return fibo_recursive(n-1) + fibo_recursive(n-2)
 
-#print(fibo_recursive(6))
+print(fibo_recursive(6))
