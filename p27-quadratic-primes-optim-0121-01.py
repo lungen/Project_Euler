@@ -21,13 +21,6 @@ def sieveOfEratosthenes(n):
     return l
 
 
-def primresult(n, a):
-    while n < a:
-        result = n * n + n + a
-        print(result, end=', ')
-        n = n + 1
-
-
 def primeRunner(n=0, a=-999, b=-1000):
     # n² + an + b
     # n² + n + 41
