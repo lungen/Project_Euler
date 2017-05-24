@@ -27,37 +27,39 @@ def primresult(n, a):
         n = n + 1
 
 
-def primeRunner(n=0, a=1):
+def primeRunner(n=0, a=-999, b=-1000):
     # n² + an + b
     # n² + n + 41
 
     l = []
-    lim = 50
     maxi = []
+    lim = 1000
 
-    #while math.sqrt(n) <= a and math.sqrt <= b:
-    while n < a:
+    while n < abs(b):
         while a < lim:
-            result = n * n + n + a
-            while result in listOfPrimeNumbers:
-                l.append(result)
-                n = n + 1
-                result = n * n + n + a
-            else:
-                if len(l) > len(maxi):
-                    maxi = l[:]
-                    #maxi.append(("n: ", n))
-                    maxi.insert(0, ("n, a", n, a))
-                l = []
-                a = a + 1
-                n = 0
+            while b <= lim:
+                result = n * n + a * n + b
+                while result in listOfPrimeNumbers:
+                    l.append(result)
+                    n = n + 1
+                    result = n * n + a * n + b
+                else:
+                    if len(l) > len(maxi):
+                        maxi = l[:]
+                        maxi.insert(0, ("n, a, b", n, a, b))
+                    l = []
+                    b = b + 1
+                    n = 0
+            a = a + 1
+            b = 0
         n = n + 1
+        a = 0
 
     return maxi
 
 
 global listOfPrimeNumbers
-listOfPrimeNumbers = sieveOfEratosthenes(1000)
+listOfPrimeNumbers = sieveOfEratosthenes(10000)
 
 print(primeRunner())
 print("\nlen: ", len(primeRunner()))

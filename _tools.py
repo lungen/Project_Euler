@@ -16,7 +16,7 @@ def remove_files(file_names):
 def save_it(data, file_name):
     """ save list: data, filename """
 
-    def timeStamped(fname, fmt='{fname}_%Y-%m-%d-%H-%M-%S.txt'):
+    def timeStamped(fname, fmt='{fname}_%Y-%m-%d-%H%M%S.txt'):
         import datetime
         return datetime.datetime.now().strftime(fmt).format(fname=fname)
 
