@@ -1,0 +1,5 @@
+# modules
+https://pypi.python.org/pypi/PyAutoGUI
+
+# links
+http://www.instructables.com/id/Password-Brute-forcer-in-Python/
