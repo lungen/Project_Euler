@@ -38,14 +38,13 @@ spp = set(pp)
 for i in range(1, lim):
     for j in range(1, lim):
         res = i * j
-        sres = "".join((str(i), str(j), str(res)))
+        sres = str(i) + str(j) + str(res)
         if len(sres) > 9:
             break
-        if sres in spp:
-            if res not in nok:
-                lp.append(sres)
-                nok.append(res)
-                suma += res
+        if sres in spp and res not in nok:
+            lp.append(sres)
+            nok.append(res)
+            suma += res
 
 print(lp)
 print("len lp: ", len(lp))
