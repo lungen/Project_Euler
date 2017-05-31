@@ -15,17 +15,38 @@ can be written as a 1 through 9 pandigital.
 HINT: Some products can be obtained in more than one way so be sure to only
 include it once in your sum.
 
+brute force:
+    biggest number: 9 * 8765432 = 1
 
-
-
-
-
-
-
-
-
-
-
-
-
+                    => 9 * 8765432 = 78888888
+                    => lim = 10000 => 10 000 * 10 000 = 100 000 000
 """
+
+import itertools
+
+lp = []
+# products can be obtained in more than one way
+nok = []
+suma = 0
+s = '123456789'
+lim = 10000
+
+p = list(itertools.permutations(s))
+pp = ["".join(x) for x in p]
+spp = set(pp)
+
+for i in range(1, lim):
+    for j in range(1, lim):
+        res = i * j
+        sres = "".join((str(i), str(j), str(res)))
+        if len(sres) > 9:
+            break
+        if sres in spp:
+            if res not in nok:
+                lp.append(sres)
+                nok.append(res)
+                suma += res
+
+print(lp)
+print("len lp: ", len(lp))
+print("product: ", suma)
