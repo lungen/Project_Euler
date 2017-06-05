@@ -1,7 +1,7 @@
 """
 Goldbach's other conjecture
 
-  Problem 46 
+  Problem 46
   Difficulty rating: 5%
 
    It was proposed by Christian Goldbach that every odd composite number can be
@@ -16,12 +16,13 @@ Goldbach's other conjecture
 
    It turns out that the conjecture was false.
 
-   What is the smallest odd composite that cannot 
+   What is the smallest odd composite that cannot
    be written as the sum of a prime
    and twice a square?
 """
 
 from _eulertools import isPrime
+
 
 def makeNumbers(stop=11):
     i = 9
@@ -35,32 +36,46 @@ def makeNumbers(stop=11):
 
 def makePrimes(stop=12):
     i = 2
-    
     while i <= stop:
         if isPrime(i):
             yield i
         i += 1
 
 
-l = list(makeNumbers(111))
-print(len(l))
+u = 9000
+# create odd composite numbers
+l = list(makeNumbers(u))
 
-pn = list(makePrimes(111))
-print(len(pn), " primes.")
+# create prime numbers
+pn = list(makePrimes(u))
+
+# add checked prime numbers
+reml = []
+
+stop = False
 
 for odd in l:
-    for primes in pn:
-        if primes >= odd:
-            #print("nok primes > odd", odd, primes)
+
+    i = 0
+    while i < len(pn) and not stop:
+        # if prime number higher than odd number; break
+        if pn[i] >= odd:
             break
-        for p in range(1, 10):
-            p = p * p
-            if 2 * p >= odd:
-                #print("nok 2 * pow > odd", odd, p, p * p)
-                break
-            
-            if odd == primes + 2 * p:
-                print("true: ", odd, " = ", primes, " + 2 * ", p)
-                l.remove(odd)
+
+        p = 1
+        while p <= 40 and not stop:
+            # if power number higher than odd number; break
+            if 2 * pow(p, 2) >= odd:
                 break
 
+            if odd == pn[i] + 2 * pow(p, 2):
+                stop = True
+                reml.append(odd)  # add checked odd number
+                break
+
+            p += 1
+        i += 1
+    stop = False
+
+# show differences
+print(set(l) - set(reml))
