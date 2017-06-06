@@ -44,8 +44,9 @@ def isPrime(x):
 import time
 
 start = time.time()
+startTime = time.strftime("%H:%M:%S")
 
-print("go: ", time.localtime(%M)) 
+print("go: ", startTime)
 u = 9000
 # create odd composite numbers
 #l = list(makeNumbers(u))
@@ -94,6 +95,7 @@ for odd in l:
 end = time.time()
 # show differences
 #print("fin ", set(l) - set(reml))
-print("fin time:", time.localtime()) 
+endTime = time.strftime("%H:%M:%S")
+print("fin time:", endTime) 
 print("minutes : ", (end / 60)) 
 
