@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+	
 """
 Goldbach's other conjecture
 
@@ -21,43 +23,46 @@ Goldbach's other conjecture
    and twice a square?
 """
 
-from _eulertools import isPrime
+import time
 
 
-def makeNumbers(stop=11):
-    i = 9
-    lim = stop
+def isPrime(x):
+    n = abs(int(x))
 
-    while i <= lim:
-        if not isPrime(i):
-            yield int(i)
-        i += 2
+    if n < 2:
+        return True
+    if n == 2:
+        return True
+
+    # check if even number
+    if not n & 1:
+        return False
+
+    for i in range(3, int((n ** 0.5)) + 1, 2):
+        if not n % i:
+            return False
+
+    return True
 
 
-def makePrimes(stop=12):
-    i = 2
-    while i <= stop:
-        if isPrime(i):
-            yield i
-        i += 1
+start = time.time()
+startTime = time.strftime("%H:%M:%S")
 
+print("go: ", startTime)
 
 u = 9000
+
 # create odd composite numbers
-#l = list(makeNumbers(u))
-l = [i for i in range(9, u +1, 2) if not isPrime(i)]
-#print(l)
+l = [i for i in range(9, u + 1, 2) if not isPrime(i)]
 
 # create prime numbers
-#pn = list(makePrimes(u))
-pn = [i for i in range(2, u + 1)  if isPrime(i)]
-#print(pn)
-# add checked prime numbers
-reml = []
+pn = [i for i in range(2, u + 1) if isPrime(i)]
 
 stop = False
+cancel = False
 
 for odd in l:
+    cancel = True
 
     i = 0
     while i < len(pn) and not stop:
@@ -73,12 +78,20 @@ for odd in l:
 
             if odd == pn[i] + 2 * pow(p, 2):
                 stop = True
-                reml.append(odd)  # add checked odd number
+                cancel = False
                 break
 
             p += 1
         i += 1
     stop = False
+    # if odd number is not divisible; CANCEL
+    if cancel:
+        print("cancel true")
+        print("odd nr: ", odd)
+        break
 
-# show differences
-print(set(l) - set(reml))
+end = time.time()
+endTime = time.strftime("%H:%M:%S")
+
+print("fin time:", endTime)
+print("minutes : ", (end / 60))
