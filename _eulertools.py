@@ -3,7 +3,7 @@ def isPrime(x):
     n = abs(int(x))
 
     if n < 2:
-        return True
+        return False
     if n == 2:
         return True
 
