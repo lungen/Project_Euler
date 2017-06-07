@@ -34,12 +34,15 @@ s = 3330
 pn = [i for i in range(1001, lim + 1, 2) if isPrime(i)]
 print("list of primes: ", len(pn))
 
+# loop through list of primes; make permutations for every prime;
 j = 0
 stop = False
 while j < len(pn):
+    # create list ONLY of permutations-primes
     p = set(int("".join(x)) for x in it.permutations(str(pn[j]))
             if int("".join(x)) in pn)
 
+    # check for increasing sequence; if yes; check if is in permutation list
     r = pn[j] + s
     if r in p:
         rr = pn[j] + 2 * s
