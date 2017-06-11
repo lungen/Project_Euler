@@ -23,11 +23,13 @@ print("go >>> ", startTime)
 n = 11
 d = 12
 l = []
-while n <= 28:
+su = 1
+
+while n <= 98:
     if not n % 10:  # skip 10, 20, ...
         n += 1
 
-    while d <= 39:
+    while d <= 99:
         if not d % 10:  # skip 10, 20, ...
             d += 1
 
@@ -35,32 +37,45 @@ while n <= 28:
         dd = list(str(d))
 
         # check if nominator is in dividor:
-        if nn[0] in dd or nn[1] in dd:
+        if (nn[0] in dd or nn[1] in dd) and nn != dd:
             v = n / d
-            print(nn, dd)
+            #print(nn, dd)
 
             # check which number is in dividor
             # 22
             # 29 
 
-            if nn[0] in dd:
-                #print(nn[0], "in ", dd)
-                nnn = list(nn[1])
-                ddd = dd[:]
-                ddd.remove(nn[0])
-                v0 = int(nnn[0]) / int(ddd[0]) 
-                print("new-0: ", nnn, ddd, v0, v)
+            # first numenator
+            #if nn[0] in dd:
+                ##print(nn[0], "in ", dd)
+                #nnn = list(nn[1])
+                #ddd = dd[:]
+                #ddd.remove(nn[0])
+                #v0 = int(nnn[0]) / int(ddd[0]) 
+                #if v0 == v:
+                    #print("new-0: ", n, d, nnn, ddd, v0, v)
 
             #if nn[1] in dd:
-                ##print(nn[1], "in ", dd)
-                #nnnn= list(nn[0])
-                #dddd = [x for x in dd if x != nn[1]]
-                ##dd.remove(nn[1])
-                #print("new-1: ", nnnn, dddd)
+                ##print(nn[0], "in ", dd)
+                #nnn = list(nn[0])
+                #ddd = dd[:]
+                #ddd.remove(nn[1])
+                #v0 = int(nnn[0]) / int(ddd[0]) 
+                #if v0 == v:
+                    #print("new-1: ", n, d, nnn, ddd, v0, v)
+
+            # 12 / 24 => 2 / 4
+            for _, x in enumerate(nn):
+                if x in dd:
+                    nn.remove(x)
+                    dd.remove(x)
+                    if v == (int(nn[0]) / int(dd[0])):
+                        print("     short: ", n, d, x, int(nn[0]), int(dd[0]), v, (int(nn[0]) / int(dd[0])))
+                        su *= int(dd[0])
+                        print("sum: ", su)
 
 
 
-                
 
 
         d += 1
