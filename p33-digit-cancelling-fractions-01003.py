@@ -16,13 +16,20 @@ find the value of the denominato
 
 import time
 
+
+def gcd(a, b):
+    if b == 0:
+        return a
+    return gcd(b, a % b)
+
+
 startTime = time.strftime("%H:%M:%S")
 print("go >>> ", startTime)
 
-
 n = 11
 d = 12
-su = 1
+sn = 1  # product of numerators
+su = 1  # product of dividors
 
 while n <= 98:
     if not n % 10:  # skip 10, 20, ...
@@ -35,8 +42,9 @@ while n <= 98:
         nn = list(str(n))
         dd = list(str(d))
 
-        # check if nominator is in dividor:
+        # check if nominator is in dividor and values are not equal: 21/21
         if (nn[0] in dd or nn[1] in dd) and nn != dd:
+
             v = n / d
 
             for _, x in enumerate(nn):
@@ -46,12 +54,16 @@ while n <= 98:
                     if v == (int(nn[0]) / int(dd[0])):
                         print(n, '/', d, x, int(nn[0]), '/', int(dd[0]),
                               (int(nn[0]) / int(dd[0])))
-                        su *= int(dd[0])
-                        print("sum: ", su)
+
+                        sn *= int(n)
+                        su *= int(d)
 
         d += 1
     n += 1
     d = n + 1
+
+print("sum: ", sn, "/", su)
+print("Result: ", su / gcd(sn, su))
 
 endTime = time.strftime("%H:%M:%S")
 print("start: ", startTime, ">>>", endTime)
