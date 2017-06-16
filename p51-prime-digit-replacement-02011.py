@@ -18,8 +18,9 @@ is part of an eight prime value family.
 
 #from _eulertools import isPrime
 #from _eulertools import gcd
-from _tools import load_it
+#from _tools import load_it
 import operator
+
 
 def isPrime(x):
     n = abs(int(x))
@@ -42,23 +43,25 @@ def isPrime(x):
 
 #lp = load_it("_list_PrimesUntil_1Mil.txt")
 #lpp = lp[:101]
-#la = [56003, 56113, 56333, 56443, 56663, 56773, 56993]
+#ll = [56003, 56113, 56333, 56443, 56663, 56773, 56993]
 #lb = [13, 23, 43, 53, 73, 83]
 
 la = []
 d = {}
-start = 11
-lim = 100
+#start = 11
+#lim = 222
+start = 56000
+lim = 60001
 print(" ------ go ------- ")
 
-for nr in range(11, lim):
+for nr in range(start, lim):
     if not isPrime(nr):
         continue
 
-    for counter in range(10, 11, 10):
+    for counter in range(10, 101, 10):
         #print(nr, isPrime(nr), end=', ')
         nr0 = nr
-        print(nr, end='    ')
+        #print(nr, end='    ')
         nr2 = nr + counter
         while len(str(nr0)) == len(str(nr2)) and nr2 <= lim:
             # check if new number is prim
@@ -69,13 +72,17 @@ for nr in range(11, lim):
                 # check for family members
                 for t, u in zip(lnr, lnr2):
                     if t == u:
-                        lnr.remove(t)
-                        lnr2.remove(u)
+                        lnr[lnr.index(t)] = None
+                        lnr2[lnr2.index(u)] = None
+
+                # filter out None
+                lnr = list(filter(None.__ne__, lnr))
+                lnr2 = list(filter(None.__ne__, lnr2))
 
                 # if rest are similar numbers
                 if len(set(lnr)) == 1 and len(set(lnr2)) == 1:
                     #print(nr2, isPrime(nr2), end=', ')
-                    print(nr2, end='    ')
+                    #print(nr2, end='    ')
                     if nr2 not in la:
                         la.append(nr2)
                     if nr0 not in d:
@@ -86,9 +93,11 @@ for nr in range(11, lim):
             #nr = nr2
             nr2 += counter
 
-        # counter for
+        # counter for, show results
         if len(la) > 0:
-            print(la)
+            print(nr0, la)
+
+        # clean
         la = []
         #print("")
 
@@ -98,8 +107,7 @@ for nr in range(11, lim):
 die = {k: len(v) for (k, v) in d.items()}
 #print('\nlen die', len(die), "\n", die)
 mx = max(die.items(), key=operator.itemgetter(1))[0]
-print("\n",mx, " - ", die[mx], ": ", d[mx])
+print("\n", mx, " - ", die[mx], ": ", d[mx])
 # [131, 151, 181, 191, 211, 241, 251, 271, 281, 311, 331, 421,
 # 431, 461, 491, 521, 541, 571, 631, 641, 661, 691, 751, 761,
 # 811, 821, 881, 911, 941, 971, 991]
-
