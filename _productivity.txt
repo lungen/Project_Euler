@@ -1,0 +1,7 @@
++   display Indentation guides in Vim
+    https://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
+
+*   productivity; keyboard layout switch
+    https://stackoverflow.com/questions/311244/keyboard-layout-for-international-programmers
+    http://eurkey.steffen.bruentjen.eu/download.html
+        test eurkey     setxkbmap eu

@@ -15,6 +15,10 @@ Find the smallest prime which, by replacing part of the number
 (not necessarily adjacent digits) with the same digit,
 is part of an eight prime value family.
 
+*   productivity; keyboard layout switch
+    https://stackoverflow.com/questions/311244/keyboard-layout-for-international-programmers
+    http://eurkey.steffen.bruentjen.eu/download.html
+        test eurkey     setxkbmap eu
 
 *   find all index of elements in list (fast) => import numpy
     https://stackoverflow.com/questions/6294179/how-to-find-all-occurrences-of-an-element-in-a-list
@@ -130,3 +134,4 @@ die = {k: len(v) for (k, v) in d.items()}
 #print('\nlen die', len(die), "\n", die)
 mx = max(die.items(), key=operator.itemgetter(1))[0]
 print("\n", mx, " - ", die[mx], ": ", d[mx])
+
