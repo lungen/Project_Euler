@@ -18,7 +18,7 @@ is part of an eight prime value family.
 *   productivity; keyboard layout switch
     https://stackoverflow.com/questions/311244/keyboard-layout-for-international-programmers
     http://eurkey.steffen.bruentjen.eu/download.html
-        test eurkey     setxkbmap eu
+    test eurkey     setxkbmap eu
 
 *   find all index of elements in list (fast) => import numpy
     https://stackoverflow.com/questions/6294179/how-to-find-all-occurrences-of-an-element-in-a-list
@@ -66,19 +66,56 @@ def isPrime(x):
     return True
 
 
-#ll = [56003, 56113, 56333, 56443, 56663, 56773, 56993]
+def hasImportantMultiples_Start(x):
+    # the first condition: first number has to start with:
+    # 199, 211
+    sx = ''.join((sorted(str(x))))
+    #limp = [00, 11, 22, 33, 44, 55]
+    limp = [0, 1, 2, 3, 4, 5]
+    multi = 1
+    for p in limp:
+        if multi * str(p) in sx:
+            print("ipm: ", sx, multi * str(p))
+            return True
+
+
+def hasImportantMultiples_End(x):
+    # for the final eight family search
+    # 199, 211
+    sx = ''.join((sorted(str(x))))
+    for p in [33, 44, 55, 66, 77, 88, 99]:
+        if str(p) in sx:
+            print("ipm: ", sx)
+            return True
+
+
+# ll = [56003, 56113, 56333, 56443, 56663, 56773, 56993]
+
 #lb = [13, 23, 43, 53, 73, 83]
 
 la = []
 d = {}
-start = 101
-lim = 502
+start = 11
+#start = 199, 181
+lim = 101
 #start = 56000
 #lim = 60001
+stop = False
+
+# first number has to have mutliple of 00 - 44 to reach the family
+# condition
+importantPattern = ('01234')
+#importantPattern = ('0123456789')
+
 print(" ------ go ------- ")
 
+# basic iteration, every number is being called only one time
+# 11, 11 + counter, 11 + 2 * counter, 
 for nr in range(start, lim):
     if not isPrime(nr):
+        continue
+
+    if not hasImportantMultiples_Start(nr):
         continue
 
     for counter in range(10, 11, 10):
@@ -87,38 +124,46 @@ for nr in range(start, lim):
 
         while len(str(nr0)) == len(str(nr2)) and nr2 <= lim:
             # check if new number is prim
-            if isPrime(nr2):
-                lnr = list(str(nr0))
-                lnr2 = list(str(nr2))
-                ln = []
-                ln2 = []
-                print(nr0, nr2)
+            if not isPrime(nr2):
+                break  # go on with next counter
 
-                # check for family members
-                for i, (t, u) in enumerate(zip(lnr, lnr2)):
-                    if t == u:
-                        print("f: ", i, t, u)
-                    else:
-                        # diff: has to be greater than last one in every case
-                        # 00, 11, 22
-                        print('n: ', i, t, u)
-                        if t > u:
-                            print('b! ', u, '<', t)
-                            break
-                        ln.append(t)
-                        ln2.append(u)
+            lnr = list(str(nr0))
+            lnr2 = list(str(nr2))
+            ln = []
+            ln2 = []
+            print(nr0, nr2)
 
-                if len(ln) == len(ln2) and len(set(ln)) == 1 and len(set(ln2)) == 1:
-                    print('bngo: ', nr0, nr2)
+            # check for family members
+            # 101, 111, 121, 
+            for i, (t, u) in enumerate(zip(lnr, lnr2)):
+                if t == u:
+                    print("f: ", i, t, u)
+                else:
+                    # diff: has to be greater than last one in every case
+                    # 00, 11, 22
+                    print('n: ', i, t, u)
+                    # bug: 199 => 229; 1 != 2 => 9 > 2; break + if 
+                    if t > u:
+                        print('b! ', u, '<', t)
+                        stop = True
+                        break
+                    ln.append(t)
+                    ln2.append(u)
 
-                    if nr2 not in la:
-                        la.append(nr2)
-                    if nr0 not in d:
-                        d[nr0] = la
-                    elif nr2 not in d[nr0]:
-                        d[nr0].append(nr2)
+            if not stop and len(ln) == len(ln2) \
+                    and len(set(ln)) == 1 \
+                    and len(set(ln2)) == 1:
+                print('bngo: ', nr0, nr2)
 
-                la = []
+                if nr2 not in la:
+                    la.append(nr2)
+                if nr0 not in d:
+                    d[nr0] = la
+                elif nr2 not in d[nr0]:
+                    d[nr0].append(nr2)
+
+            la = []
+            stop = False
             nr2 += counter
 
         # counter for, show results
@@ -127,11 +172,12 @@ for nr in range(start, lim):
 
         # clean
         la = []
+        stop = False
         #print("")
 
-
-die = {k: len(v) for (k, v) in d.items()}
+print(d)
+#die = {k: len(v) for (k, v) in d.items()}
 #print('\nlen die', len(die), "\n", die)
-mx = max(die.items(), key=operator.itemgetter(1))[0]
-print("\n", mx, " - ", die[mx], ": ", d[mx])
+#mx = max(die.items(), key=operator.itemgetter(1))[0]
+#print("\n", mx, " - ", die[mx], ": ", d[mx])
 
