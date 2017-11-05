@@ -22,3 +22,19 @@ def isPrime(x):
             return False
 
     return True
+
+
+# check if number is palindrome
+def isPalindrome(n):
+    n = str(n)
+    nn = ''.join(reversed(n))
+    if n == nn:
+        return True
+    else:
+        return False
+
+
+def reverseNumber(a):
+    # reverse a number
+    rn = ''.join(reversed(str(a)))
+    return int(rn)
