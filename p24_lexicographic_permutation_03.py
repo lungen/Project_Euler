@@ -60,10 +60,10 @@ def start(n):
     nnB = nn[largest_x + 1:]
     nn = nnA + sorted(nnB)
     return(nn)
-    
+
 
 def cycle(lista):
-    
+
     count = 1
     # -1 means that the start-function has finished
     while lista != -1:
@@ -74,6 +74,6 @@ def cycle(lista):
         count += 1
     else:
         print("Permutation finished.")
-            
+
 cycle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
