@@ -13,8 +13,8 @@ li = []
 s = 100
 e = 1000
 
-for i in xrange(s, e):
-    for u in xrange(s, e):
+for i in range(s, e):
+    for u in range(s, e):
         p = str(i * u)
         q = "".join(reversed(p))
         if str(p) == str(q):
