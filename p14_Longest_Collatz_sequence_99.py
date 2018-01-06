@@ -15,8 +15,7 @@ def f(n):
             result = int(n / 2)
         else:               # odd number
             result = int((3 * n) + 1)
-
-        # add new key
+# add new key
         d[n] = result
         # function recursion
         return 1 + f(result)
