@@ -1,7 +1,6 @@
 # https://stackoverflow.com/questions/34706731/recursive-factorial-using-dict-causes-recursionerror#34706749
 
 
-# returns a counter
 def f(n, d={1: 1}):
     if n not in d.keys():
         result = 0
